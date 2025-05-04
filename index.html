@@ -6,7 +6,7 @@
   <title>Invitación</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* Estilos adicionales específicos */
+    /* Estilos inline para botones superpuestos */
     .asistencia-abajo {
       position: absolute;
       bottom: 5px;
@@ -29,15 +29,17 @@
 </head>
 <body>
 
-  <!-- Vista inicial -->
+  <!-- Pantalla inicial -->
   <div class="inicio-container" id="inicioContainer">
     <button id="abrirInvitacion">Abrir Invitación</button>
   </div>
 
-  <!-- Video + botones -->
+  <!-- Contenedor del video y botones -->
   <div class="video-wrapper hidden" id="videoWrapper">
     <div class="video-container" id="videoContainer">
-      <div id="player"></div>
+      <div style="position: relative; z-index: 1;">
+        <div id="player"></div>
+      </div>
     </div>
 
     <!-- Botón visible durante el video -->
@@ -47,7 +49,7 @@
       </a>
     </div>
 
-    <!-- Botón centrado (oculto hasta final del video) -->
+    <!-- Botón centrado al finalizar el video -->
     <div class="asistencia-centro" id="botonCentral">
       <a href="https://forms.gle/NnZfZxmkAJEF8WnB9" class="cta-button" target="_blank">
         Confirma Aquí tu Asistencia
@@ -55,7 +57,7 @@
     </div>
   </div>
 
-  <!-- YouTube API y lógica -->
+  <!-- Script para YouTube API -->
   <script>
     let player;
 
@@ -75,17 +77,18 @@
     }
 
     function onPlayerStateChange(event) {
-      if (event.data === 0) { // 0 = video finalizado
+      if (event.data === 0) { // Video finalizado
         document.getElementById('botonInferior').style.display = 'none';
         document.getElementById('botonCentral').style.display = 'block';
       }
     }
 
     document.getElementById('abrirInvitacion').addEventListener('click', () => {
+      // Oculta la pantalla inicial
       document.getElementById('inicioContainer').style.display = 'none';
       document.getElementById('videoWrapper').classList.remove('hidden');
 
-      // Cargar la API de YouTube dinámicamente
+      // Carga la YouTube API
       const tag = document.createElement('script');
       tag.src = "https://www.youtube.com/iframe_api";
       document.body.appendChild(tag);
