@@ -8,19 +8,46 @@
 </head>
 <body>
 
+  <!-- Portada con imagen y botón de reproducción -->
   <div class="video-cover" id="videoCover">
     <img src="https://img.youtube.com/vi/lKo5tWdGBgo/maxresdefault.jpg" alt="Portada del video" />
     <button id="playVideo">▶ Reproducir</button>
   </div>
 
+  <!-- Contenedor del video de YouTube -->
   <div class="video-container" id="videoContainer"></div>
 
+  <!-- Audio de fondo -->
+  <audio id="bgAudio" src="quince.mp3" preload="auto"></audio>
+
+  <!-- Botón de confirmación -->
   <footer>
     <a href="https://forms.gle/NnZfZxmkAJEF8WnB9" class="cta-button" target="_blank">
       Confirma Aquí tu Participación
     </a>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- Script de reproducción -->
+  <script>
+    document.getElementById('playVideo').addEventListener('click', () => {
+      // Ocultar portada
+      document.getElementById('videoCover').style.display = 'none';
+
+      // Reproducir audio de fondo
+      const audio = document.getElementById('bgAudio');
+      audio.play().catch(err => {
+        console.log('Error al reproducir el audio:', err);
+      });
+
+      // Insertar iframe con video de YouTube
+      const iframe = document.createElement('iframe');
+      iframe.src = "https://www.youtube.com/embed/lKo5tWdGBgo?autoplay=1&rel=0&modestbranding=1";
+      iframe.allow = "autoplay; encrypted-media";
+      iframe.allowFullscreen = true;
+
+      document.getElementById('videoContainer').appendChild(iframe);
+    });
+  </script>
+
 </body>
 </html>
