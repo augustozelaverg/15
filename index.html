@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invitación</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <div class="video-wrapper" id="videoWrapper">
-    <div class="video-thumbnail">
-      <img src="https://img.youtube.com/vi/lKo5tWdGBgo/maxresdefault.jpg" alt="Video" />
-      <button id="playButton">▶ Reproducir</button>
-    </div>
+  <div class="video-cover" id="videoCover">
+    <img src="https://img.youtube.com/vi/lKo5tWdGBgo/maxresdefault.jpg" alt="Portada del video" />
+    <button id="playVideo">▶ Reproducir</button>
   </div>
 
-  <div id="videoContainer" class="hidden">
-    <iframe
+  <div class="video-container" id="videoContainer"></div>
+
+  <footer>
+    <a href="https://forms.gle/NnZfZxmkAJEF8WnB9" class="cta-button" target="_blank">
+      Confirma Aquí tu Participación
+    </a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
