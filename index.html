@@ -8,37 +8,39 @@
 </head>
 <body>
 
-  <!-- Pantalla inicial -->
+  <!-- Pantalla inicial con botón celeste -->
   <div class="inicio-container" id="inicioContainer">
     <button id="abrirInvitacion">Abrir Invitación</button>
   </div>
 
-  <!-- Contenedor del video -->
-  <div class="video-container" id="videoContainer"></div>
+  <!-- Contenedor del video (inicialmente oculto) -->
+  <div class="video-wrapper hidden" id="videoWrapper">
+    <div class="video-container" id="videoContainer"></div>
 
-  <!-- Botón de confirmación oculto al inicio -->
-  <footer id="footer" class="hidden">
-    <a href="https://forms.gle/NnZfZxmkAJEF8WnB9" class="cta-button" target="_blank">
-      Confirma Aquí tu Participación
-    </a>
-  </footer>
+    <!-- Botón dorado superpuesto -->
+    <footer id="footer">
+      <a href="https://forms.gle/NnZfZxmkAJEF8WnB9" class="cta-button" target="_blank">
+        Confirma Aquí tu Participación
+      </a>
+    </footer>
+  </div>
 
-  <!-- Script embebido -->
+  <!-- Script -->
   <script>
     document.getElementById('abrirInvitacion').addEventListener('click', () => {
-      // Ocultar pantalla inicial
+      // Oculta la pantalla inicial
       document.getElementById('inicioContainer').style.display = 'none';
 
-      // Mostrar botón de confirmación
-      document.getElementById('footer').classList.remove('hidden');
+      // Muestra la sección del video y el botón dorado
+      const wrapper = document.getElementById('videoWrapper');
+      wrapper.classList.remove('hidden');
 
-      // Crear iframe con video de YouTube y autoplay
+      // Inserta el video con loop
       const iframe = document.createElement('iframe');
-      iframe.src = "https://www.youtube.com/embed/lKo5tWdGBgo?autoplay=1&rel=0&modestbranding=1";
+      iframe.src = "https://www.youtube.com/embed/lKo5tWdGBgo?autoplay=1&loop=1&playlist=lKo5tWdGBgo&rel=0&modestbranding=1";
       iframe.allow = "autoplay; encrypted-media";
       iframe.allowFullscreen = true;
 
-      // Mostrar el video
       document.getElementById('videoContainer').appendChild(iframe);
     });
   </script>
