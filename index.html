@@ -8,20 +8,12 @@
 </head>
 <body>
 
-  <div class="video-container">
-    <iframe 
-      src="https://www.youtube.com/embed/lKo5tWdGBgo?autoplay=1&mute=1&controls=1&loop=1&playlist=lKo5tWdGBgo"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-    ></iframe>
+  <div class="video-wrapper" id="videoWrapper">
+    <div class="video-thumbnail">
+      <img src="https://img.youtube.com/vi/lKo5tWdGBgo/maxresdefault.jpg" alt="Video" />
+      <button id="playButton">▶ Reproducir</button>
+    </div>
   </div>
 
-  <footer>
-    <a href="https://forms.gle/NnZfZxmkAJEF8WnB9" target="_blank" class="cta-button">
-      Confirma Aquí tu Participación
-    </a>
-  </footer>
-
-</body>
-</html>
+  <div id="videoContainer" class="hidden">
+    <iframe
