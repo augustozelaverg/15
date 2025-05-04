@@ -13,19 +13,19 @@
     <button id="abrirInvitacion">Abrir Invitación</button>
   </div>
 
-  <!-- Contenedor del video (inicialmente oculto) -->
+  <!-- Contenedor del video y botón -->
   <div class="video-wrapper hidden" id="videoWrapper">
     <div class="video-container" id="videoContainer"></div>
 
-    <!-- Botón dorado superpuesto al video -->
-    <footer id="footer">
+    <!-- Botón dorado fijo al pie -->
+    <div class="button-footer">
       <a href="https://forms.gle/NnZfZxmkAJEF8WnB9" class="cta-button" target="_blank">
-        Confirma Aquí tu Participación
+        Confirma Aquí tu Asistencia
       </a>
-    </footer>
+    </div>
   </div>
 
-  <!-- Script -->
+  <!-- Script para manejar el cambio de vista -->
   <script>
     document.getElementById('abrirInvitacion').addEventListener('click', () => {
       document.getElementById('inicioContainer').style.display = 'none';
@@ -35,6 +35,8 @@
       iframe.src = "https://www.youtube.com/embed/lKo5tWdGBgo?autoplay=1&loop=1&playlist=lKo5tWdGBgo&rel=0&modestbranding=1";
       iframe.allow = "autoplay; encrypted-media";
       iframe.allowFullscreen = true;
+      iframe.loading = "lazy";
+
       document.getElementById('videoContainer').appendChild(iframe);
     });
   </script>
