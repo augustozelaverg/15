@@ -8,29 +8,37 @@
 </head>
 <body>
 
-  <!-- Pantalla inicial con botón celeste -->
+  <!-- Pantalla inicial con fondo celeste y botón -->
   <div class="inicio-container" id="inicioContainer">
     <button id="abrirInvitacion">Abrir Invitación</button>
   </div>
 
-  <!-- Contenedor del video y botón -->
+  <!-- Contenedor del video y botón superpuesto -->
   <div class="video-wrapper hidden" id="videoWrapper">
+    
+    <!-- Video embebido -->
     <div class="video-container" id="videoContainer"></div>
 
-    <!-- Botón dorado fijo al pie -->
-    <div class="button-footer">
+    <!-- Botón dorado superpuesto 5px arriba del borde -->
+    <div class="button-overlay">
       <a href="https://forms.gle/NnZfZxmkAJEF8WnB9" class="cta-button" target="_blank">
         Confirma Aquí tu Asistencia
       </a>
     </div>
+
   </div>
 
   <!-- Script para manejar el cambio de vista -->
   <script>
     document.getElementById('abrirInvitacion').addEventListener('click', () => {
+      // Ocultar el botón inicial
       document.getElementById('inicioContainer').style.display = 'none';
-      document.getElementById('videoWrapper').classList.remove('hidden');
 
+      // Mostrar el contenedor del video
+      const wrapper = document.getElementById('videoWrapper');
+      wrapper.classList.remove('hidden');
+
+      // Crear e insertar el iframe del video
       const iframe = document.createElement('iframe');
       iframe.src = "https://www.youtube.com/embed/lKo5tWdGBgo?autoplay=1&loop=1&playlist=lKo5tWdGBgo&rel=0&modestbranding=1";
       iframe.allow = "autoplay; encrypted-media";
