@@ -11,7 +11,7 @@ html, body {
   font-family: Arial, sans-serif;
 }
 
-/* Pantalla inicial con fondo celeste */
+/* Pantalla inicial celeste */
 .inicio-container {
   height: 100vh;
   background-color: #87CEEB;
@@ -20,6 +20,7 @@ html, body {
   align-items: center;
 }
 
+/* Botón celeste cromado */
 #abrirInvitacion {
   padding: 1rem 2.5rem;
   font-size: 1.8rem;
@@ -29,37 +30,19 @@ html, body {
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.2);
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
   transition: transform 0.3s ease;
-}
-
-#abrirInvitacion::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0.0) 0%,
-    rgba(255, 255, 255, 0.6) 50%,
-    rgba(255, 255, 255, 0.0) 100%
-  );
-  transform: rotate(25deg);
-  animation: brillo 2s infinite;
 }
 
 #abrirInvitacion:hover {
   transform: scale(1.05);
 }
 
-/* Contenedor del video */
+/* Video */
 .video-wrapper {
   position: relative;
   height: 100vh;
   width: 100%;
+  overflow: hidden;
 }
 
 .video-container iframe {
@@ -68,10 +51,12 @@ html, body {
   border: none;
 }
 
-/* Botón dorado superpuesto */
+/* Botón dorado fijo superpuesto al video */
 footer {
   position: absolute;
   bottom: 20px;
+  left: 0;
+  right: 0;
   width: 100%;
   text-align: center;
   z-index: 10;
@@ -86,42 +71,26 @@ footer {
   border-radius: 12px;
   text-decoration: none;
   box-shadow: 0 0 15px rgba(255, 223, 0, 0.5), inset 0 0 8px rgba(255, 255, 255, 0.2);
-  position: relative;
-  overflow: hidden;
   transition: transform 0.3s ease;
-}
-
-.cta-button::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0.0) 0%,
-    rgba(255, 255, 255, 0.6) 50%,
-    rgba(255, 255, 255, 0.0) 100%
-  );
-  transform: rotate(25deg);
-  animation: brillo 3s infinite;
 }
 
 .cta-button:hover {
   transform: scale(1.05);
 }
 
-@keyframes brillo {
-  0% {
-    transform: translateX(-100%) rotate(25deg);
+/* Responsive */
+@media (max-width: 600px) {
+  #abrirInvitacion {
+    font-size: 1.2rem;
+    padding: 0.8rem 1.5rem;
   }
-  100% {
-    transform: translateX(100%) rotate(25deg);
+
+  .cta-button {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
   }
 }
 
-/* Utilidad */
 .hidden {
   display: none;
 }
