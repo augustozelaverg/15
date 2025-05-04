@@ -8,37 +8,10 @@
 </head>
 <body>
 
-  <!-- Botón principal al cargar la página -->
-  <div class="inicio-container" id="inicioContainer">
+  <!-- Botón único en pantalla -->
+  <div class="inicio-container">
     <button id="abrirInvitacion">Abrir Invitación</button>
   </div>
-
-  <!-- Contenedor del video -->
-  <div class="video-container" id="videoContainer"></div>
-
-  <!-- Botón de confirmación (inicialmente oculto) -->
-  <footer id="footer" class="hidden">
-    <a href="https://forms.gle/NnZfZxmkAJEF8WnB9" class="cta-button" target="_blank">
-      Confirma Aquí tu Participación
-    </a>
-  </footer>
-
-  <script>
-    document.getElementById('abrirInvitacion').addEventListener('click', () => {
-      // Oculta el botón inicial
-      document.getElementById('inicioContainer').style.display = 'none';
-
-      // Muestra el botón de confirmación
-      document.getElementById('footer').classList.remove('hidden');
-
-      // Crea y añade el iframe con autoplay
-      const iframe = document.createElement('iframe');
-      iframe.src = "https://www.youtube.com/embed/lKo5tWdGBgo?autoplay=1&rel=0&modestbranding=1";
-      iframe.allow = "autoplay; encrypted-media";
-      iframe.allowFullscreen = true;
-      document.getElementById('videoContainer').appendChild(iframe);
-    });
-  </script>
 
 </body>
 </html>
