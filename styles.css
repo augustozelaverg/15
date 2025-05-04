@@ -1,4 +1,4 @@
-/* Reset */
+/* Reset y base */
 * {
   margin: 0;
   padding: 0;
@@ -8,11 +8,11 @@
 html, body {
   height: 100%;
   width: 100%;
-  background-color: #87CEEB; /* celeste */
+  background-color: #87CEEB; /* Celeste */
   font-family: Arial, sans-serif;
 }
 
-/* Contenedor centrado */
+/* Contenedor de inicio */
 .inicio-container {
   display: flex;
   justify-content: center;
@@ -20,7 +20,7 @@ html, body {
   height: 100vh;
 }
 
-/* Botón metálico cromado brillante */
+/* Botón cromado */
 #abrirInvitacion {
   padding: 1rem 2.5rem;
   font-size: 1.8rem;
@@ -35,7 +35,6 @@ html, body {
   transition: transform 0.3s ease;
 }
 
-/* Animación de brillo al pasar el cursor */
 #abrirInvitacion::after {
   content: "";
   position: absolute;
@@ -66,10 +65,51 @@ html, body {
   }
 }
 
-/* Responsive */
+/* Contenedor del video */
+.video-container iframe {
+  width: 100%;
+  height: 100vh;
+  border: none;
+}
+
+/* Footer (botón de confirmación) */
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  text-align: center;
+  padding: 1rem 0;
+  z-index: 10;
+}
+
+.cta-button {
+  background-color: #28a745;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.2rem;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #218838;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Responsive ajustes */
 @media (max-width: 600px) {
   #abrirInvitacion {
     font-size: 1.2rem;
     padding: 0.8rem 1.5rem;
+  }
+
+  .cta-button {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
   }
 }
