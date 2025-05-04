@@ -58,7 +58,7 @@ html, body {
   display: block;
 }
 
-/* --- Botón dorado superpuesto al video --- */
+/* --- Botón rojo superpuesto al video --- */
 .button-overlay {
   position: absolute;
   bottom: 5px;
@@ -73,12 +73,12 @@ html, body {
   padding: 0.8rem 1.5rem;
   font-size: 1.2rem;
   color: white;
-  background: linear-gradient(145deg, #f5e28c, #d4af37, #f5e28c);
+  background: linear-gradient(145deg, #f44336, #c62828, #f44336);
   border: none;
   border-radius: 12px;
   text-decoration: none;
-  box-shadow: 0 0 15px rgba(255, 223, 0, 0.5),
-              inset 0 0 8px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.6),
+              inset 0 0 6px rgba(255, 255, 255, 0.2);
   transition: transform 0.3s ease;
 }
 
