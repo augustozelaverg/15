@@ -38,7 +38,7 @@ html, body {
   transform: scale(1.05);
 }
 
-/* --- Contenedor del video y botón --- */
+/* --- Contenedor del video --- */
 .video-wrapper {
   position: relative;
   width: 100%;
@@ -56,19 +56,11 @@ html, body {
   height: 100%;
   border: none;
   display: block;
+  position: relative;
+  z-index: 1; /* Importante para permitir superposición de botones */
 }
 
-/* --- Botón rojo superpuesto al video --- */
-.button-overlay {
-  position: absolute;
-  bottom: 5px;
-  left: 0;
-  right: 0;
-  width: 100%;
-  text-align: center;
-  z-index: 10;
-}
-
+/* --- Botón rojo reutilizable --- */
 .cta-button {
   padding: 0.8rem 1.5rem;
   font-size: 1.2rem;
@@ -86,7 +78,7 @@ html, body {
   transform: scale(1.05);
 }
 
-/* --- Responsive ajustes --- */
+/* --- Responsive --- */
 @media (max-width: 600px) {
   #abrirInvitacion {
     font-size: 1.2rem;
