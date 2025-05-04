@@ -1,4 +1,4 @@
-/* Reinicio básico y fuentes */
+/* Reinicio y fuentes */
 * {
   margin: 0;
   padding: 0;
@@ -13,59 +13,46 @@ html, body {
   color: #fff;
 }
 
-/* Portada del video */
-.video-cover {
-  position: relative;
-  width: 100%;
+/* Pantalla inicial con botón */
+.inicio-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
   background-color: #000;
-  overflow: hidden;
 }
 
-.video-cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Botón de reproducción */
-#playVideo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 2rem;
+#abrirInvitacion {
   padding: 1rem 2rem;
+  font-size: 1.5rem;
   border: none;
-  background-color: rgba(255, 0, 0, 0.8);
-  color: white;
   border-radius: 10px;
+  background-color: #f44336;
+  color: white;
   cursor: pointer;
-  z-index: 2;
   transition: background 0.3s ease;
 }
 
-#playVideo:hover {
-  background-color: rgba(200, 0, 0, 0.9);
+#abrirInvitacion:hover {
+  background-color: #d32f2f;
 }
 
-/* Contenedor del video embebido */
+/* Contenedor de video */
 .video-container iframe {
   width: 100%;
   height: 100vh;
   border: none;
 }
 
-/* Pie de página */
+/* Botón de confirmación */
 footer {
   position: fixed;
   bottom: 0;
   width: 100%;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.7);
   padding: 1rem 0;
-  z-index: 3;
+  z-index: 10;
 }
 
 .cta-button {
@@ -82,15 +69,6 @@ footer {
   background-color: #218838;
 }
 
-/* Ajustes responsive */
-@media (max-width: 600px) {
-  #playVideo {
-    font-size: 1.2rem;
-    padding: 0.8rem 1.2rem;
-  }
-
-  .cta-button {
-    font-size: 1rem;
-    padding: 0.6rem 1rem;
-  }
+.hidden {
+  display: none;
 }
