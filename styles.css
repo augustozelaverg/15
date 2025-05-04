@@ -1,4 +1,4 @@
-/* Reset */
+/* Reset básico */
 * {
   margin: 0;
   padding: 0;
@@ -9,9 +9,10 @@ html, body {
   height: 100%;
   width: 100%;
   font-family: Arial, sans-serif;
+  background-color: #000;
 }
 
-/* Pantalla inicial celeste */
+/* Pantalla inicial */
 .inicio-container {
   height: 100vh;
   background-color: #87CEEB;
@@ -20,7 +21,6 @@ html, body {
   align-items: center;
 }
 
-/* Botón celeste cromado */
 #abrirInvitacion {
   padding: 1rem 2.5rem;
   font-size: 1.8rem;
@@ -37,29 +37,35 @@ html, body {
   transform: scale(1.05);
 }
 
-/* Video */
+/* Contenedor del video y botón */
 .video-wrapper {
   position: relative;
-  height: 100vh;
   width: 100%;
+  height: 100vh;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.video-container {
+  flex: 1;
+  width: 100%;
 }
 
 .video-container iframe {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   border: none;
+  display: block;
 }
 
-/* Botón dorado fijo superpuesto al video */
-footer {
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  right: 0;
+/* Botón dorado */
+.button-footer {
   width: 100%;
+  background: rgba(0, 0, 0, 0.6);
   text-align: center;
-  z-index: 10;
+  padding: 1rem 0;
 }
 
 .cta-button {
@@ -91,6 +97,7 @@ footer {
   }
 }
 
+/* Utilidad */
 .hidden {
   display: none;
 }
