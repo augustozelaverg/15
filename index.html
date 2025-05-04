@@ -17,7 +17,7 @@
   <div class="video-wrapper hidden" id="videoWrapper">
     <div class="video-container" id="videoContainer"></div>
 
-    <!-- Botón dorado superpuesto -->
+    <!-- Botón dorado superpuesto al video -->
     <footer id="footer">
       <a href="https://forms.gle/NnZfZxmkAJEF8WnB9" class="cta-button" target="_blank">
         Confirma Aquí tu Participación
@@ -28,19 +28,13 @@
   <!-- Script -->
   <script>
     document.getElementById('abrirInvitacion').addEventListener('click', () => {
-      // Oculta la pantalla inicial
       document.getElementById('inicioContainer').style.display = 'none';
+      document.getElementById('videoWrapper').classList.remove('hidden');
 
-      // Muestra la sección del video y el botón dorado
-      const wrapper = document.getElementById('videoWrapper');
-      wrapper.classList.remove('hidden');
-
-      // Inserta el video con loop
       const iframe = document.createElement('iframe');
       iframe.src = "https://www.youtube.com/embed/lKo5tWdGBgo?autoplay=1&loop=1&playlist=lKo5tWdGBgo&rel=0&modestbranding=1";
       iframe.allow = "autoplay; encrypted-media";
       iframe.allowFullscreen = true;
-
       document.getElementById('videoContainer').appendChild(iframe);
     });
   </script>
