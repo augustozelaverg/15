@@ -5,47 +5,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Invitación</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Estilos adicionales específicos */
+    .asistencia-abajo {
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      right: 0;
+      width: 100%;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .asistencia-centro {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 11;
+      display: none;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Pantalla inicial con fondo celeste y botón -->
+  <!-- Vista inicial -->
   <div class="inicio-container" id="inicioContainer">
     <button id="abrirInvitacion">Abrir Invitación</button>
   </div>
 
-  <!-- Contenedor del video y botón superpuesto -->
+  <!-- Video + botones -->
   <div class="video-wrapper hidden" id="videoWrapper">
-    
-    <!-- Video embebido -->
-    <div class="video-container" id="videoContainer"></div>
+    <div class="video-container" id="videoContainer">
+      <div id="player"></div>
+    </div>
 
-    <!-- Botón dorado superpuesto 5px arriba del borde -->
-    <div class="button-overlay">
+    <!-- Botón visible durante el video -->
+    <div class="asistencia-abajo" id="botonInferior">
       <a href="https://forms.gle/NnZfZxmkAJEF8WnB9" class="cta-button" target="_blank">
         Confirma Aquí tu Asistencia
       </a>
     </div>
 
+    <!-- Botón centrado (oculto hasta final del video) -->
+    <div class="asistencia-centro" id="botonCentral">
+      <a href="https://forms.gle/NnZfZxmkAJEF8WnB9" class="cta-button" target="_blank">
+        Confirma Aquí tu Asistencia
+      </a>
+    </div>
   </div>
 
-  <!-- Script para manejar el cambio de vista -->
+  <!-- YouTube API y lógica -->
   <script>
+    let player;
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        videoId: 'lKo5tWdGBgo',
+        playerVars: {
+          autoplay: 1,
+          controls: 1,
+          rel: 0,
+          modestbranding: 1
+        },
+        events: {
+          onStateChange: onPlayerStateChange
+        }
+      });
+    }
+
+    function onPlayerStateChange(event) {
+      if (event.data === 0) { // 0 = video finalizado
+        document.getElementById('botonInferior').style.display = 'none';
+        document.getElementById('botonCentral').style.display = 'block';
+      }
+    }
+
     document.getElementById('abrirInvitacion').addEventListener('click', () => {
-      // Ocultar el botón inicial
       document.getElementById('inicioContainer').style.display = 'none';
+      document.getElementById('videoWrapper').classList.remove('hidden');
 
-      // Mostrar el contenedor del video
-      const wrapper = document.getElementById('videoWrapper');
-      wrapper.classList.remove('hidden');
-
-      // Crear e insertar el iframe del video
-      const iframe = document.createElement('iframe');
-      iframe.src = "https://www.youtube.com/embed/lKo5tWdGBgo?autoplay=1&loop=1&playlist=lKo5tWdGBgo&rel=0&modestbranding=1";
-      iframe.allow = "autoplay; encrypted-media";
-      iframe.allowFullscreen = true;
-      iframe.loading = "lazy";
-
-      document.getElementById('videoContainer').appendChild(iframe);
+      // Cargar la API de YouTube dinámicamente
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.body.appendChild(tag);
     });
   </script>
 
