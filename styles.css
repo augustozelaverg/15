@@ -1,4 +1,4 @@
-/* Reset y base */
+/* Reset general */
 * {
   margin: 0;
   padding: 0;
@@ -6,16 +6,17 @@
 }
 
 html, body {
-  height: 100%;
   width: 100%;
+  height: 100%;
   font-family: Arial, sans-serif;
   background-color: #000;
+  overflow: hidden;
 }
 
-/* --- Pantalla de inicio --- */
+/* Pantalla de inicio */
 .inicio-container {
   height: 100vh;
-  background-color: #87CEEB; /* Celeste */
+  background-color: #87CEEB;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,7 +39,7 @@ html, body {
   transform: scale(1.05);
 }
 
-/* --- Contenedor del video --- */
+/* Video a pantalla completa */
 .video-wrapper {
   position: relative;
   width: 100%;
@@ -57,10 +58,19 @@ html, body {
   border: none;
   display: block;
   position: relative;
-  z-index: 1; /* Importante para permitir superposición de botones */
+  z-index: 1;
 }
 
-/* --- Botón rojo reutilizable --- */
+/* Botón rojo centrado sobre el video */
+.boton-centro {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+/* Estilo del botón */
 .cta-button {
   padding: 0.8rem 1.5rem;
   font-size: 1.2rem;
@@ -78,7 +88,7 @@ html, body {
   transform: scale(1.05);
 }
 
-/* --- Responsive --- */
+/* Responsive */
 @media (max-width: 600px) {
   #abrirInvitacion {
     font-size: 1.2rem;
@@ -91,7 +101,7 @@ html, body {
   }
 }
 
-/* --- Utilidades --- */
+/* Utilidad */
 .hidden {
   display: none;
 }
