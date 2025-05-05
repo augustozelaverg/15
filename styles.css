@@ -1,107 +1,129 @@
-/* Reset general */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
 }
 
-html, body {
-  width: 100%;
-  height: 100%;
-  font-family: Arial, sans-serif;
-  background-color: #000;
-  overflow: hidden;
+/* Pantalla de bienvenida */
+#welcome-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #87CEEB;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.5s ease;
 }
 
-/* Pantalla de inicio */
-.inicio-container {
-  height: 100vh;
-  background-color: #87CEEB;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#welcome-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
 }
 
-#abrirInvitacion {
-  padding: 1rem 2.5rem;
-  font-size: 1.8rem;
-  color: white;
-  background: linear-gradient(145deg, #a3d5f7, #5ebbe2, #a3d5f7);
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4),
-              inset 0 0 10px rgba(255, 255, 255, 0.2);
-  cursor: pointer;
-  transition: transform 0.3s ease;
+/* Botón cromado celeste */
+.chrome-button-blue {
+    padding: 15px 30px;
+    font-size: 18px;
+    color: white;
+    background: linear-gradient(145deg, #a0d8ef, #5bb7d5);
+    border: 2px solid #ffffff;
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
 }
 
-#abrirInvitacion:hover {
-  transform: scale(1.05);
+.chrome-button-blue:hover {
+    background: linear-gradient(145deg, #5bb7d5, #a0d8ef);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Video a pantalla completa */
-.video-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
+/* Contenedor del video */
+#video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    z-index: 500;
 }
 
-.video-container {
-  width: 100%;
-  height: 100%;
+#player {
+    width: 100%;
+    height: 100%;
 }
 
-.video-container iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
-  position: relative;
-  z-index: 1;
+/* Botón cromado rojo */
+#confirm-button {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 25px;
+    font-size: 16px;
+    color: white;
+    background: linear-gradient(145deg, #ff4040, #d32f2f);
+    border: 2px solid #ffffff;
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-weight: bold;
+    z-index: 600;
 }
 
-/* Botón rojo centrado sobre el video */
-.boton-centro {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
+#confirm-button.centered {
+    bottom: auto;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
-/* Estilo del botón */
-.cta-button {
-  padding: 0.8rem 1.5rem;
-  font-size: 1.2rem;
-  color: white;
-  background: linear-gradient(145deg, #f44336, #c62828, #f44336);
-  border: none;
-  border-radius: 12px;
-  text-decoration: none;
-  box-shadow: 0 0 12px rgba(255, 0, 0, 0.6),
-              inset 0 0 6px rgba(255, 255, 255, 0.2);
-  transition: transform 0.3s ease;
+#confirm-button:hover {
+    background: linear-gradient(145deg, #d32f2f, #ff4040);
+    transform: translate(-50%, -4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-.cta-button:hover {
-  transform: scale(1.05);
+/* Responsividad */
+@media (max-width: 768px) {
+    .chrome-button-blue {
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+
+    #confirm-button {
+        padding: 10px 20px;
+        font-size: 14px;
+        bottom: 15px;
+    }
+
+    #confirm-button.centered {
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  #abrirInvitacion {
-    font-size: 1.2rem;
-    padding: 0.8rem 1.5rem;
-  }
+@media (max-width: 480px) {
+    .chrome-button-blue {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
 
-  .cta-button {
-    font-size: 1rem;
-    padding: 0.6rem 1.2rem;
-  }
-}
-
-/* Utilidad */
-.hidden {
-  display: none;
+    #confirm-button {
+        padding: 8px 15px;
+        font-size: 12px;
+        bottom: 10px;
+    }
 }
