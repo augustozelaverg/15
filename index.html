@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitación Especial</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Invitación Futurista</title>
     <style>
         /* Reset y estilos base */
         * {
@@ -11,7 +11,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body, html {
             width: 100%;
             height: 100%;
@@ -34,22 +34,53 @@
             transition: opacity 0.5s ease;
         }
 
+        /* Botón celeste futurista */
         .chrome-button {
-            background: linear-gradient(to right, #6ec1e4 0%, #29cce5 100%);
-            border: none;
+            position: relative;
+            background: linear-gradient(135deg, #00F0FF, #0078FF, #00F0FF);
+            background-size: 400% 400%;
             border-radius: 30px;
             padding: 15px 30px;
-            color: white;
             font-size: 1.2rem;
             font-weight: bold;
+            color: white;
+            border: none;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.3s ease;
+            animation: gradientShift 6s ease infinite;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 120, 255, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .chrome-button::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -50%;
+            width: 100%;
+            height: 300%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+            transform: rotate(60deg);
             transition: all 0.3s ease;
         }
 
+        .chrome-button:hover::before {
+            left: 150%;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .chrome-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 0 20px rgba(0, 120, 255, 0.7), inset 0 0 10px rgba(255, 255, 255, 0.3);
         }
 
         /* Contenedor del video */
@@ -69,37 +100,61 @@
             object-fit: cover;
         }
 
-        /* Botón de confirmación */
+        /* Botón dorado futurista */
         .confirm-button {
             position: absolute;
-            bottom: 20%;
+            bottom: 5%; /* Cambiado a 5% del borde inferior */
             left: 50%;
             transform: translateX(-50%);
-            background: linear-gradient(to right, #FFD700, #FFA500);
-            border: none;
+            background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700);
+            background-size: 400% 400%;
             border-radius: 30px;
             padding: 15px 30px;
-            color: white;
             font-size: 1rem;
             font-weight: bold;
+            color: white;
+            border: none;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
+            overflow: hidden;
             z-index: 2000;
             display: none;
+            transition: all 0.3s ease;
+            animation: gradientShift 6s ease infinite;
+            white-space: nowrap; /* Texto en una sola línea */
+            text-decoration: none; /* Sin subrayado */
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .confirm-button::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -50%;
+            width: 100%;
+            height: 300%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+            transform: rotate(60deg);
+            transition: all 0.3s ease;
+        }
+
+        .confirm-button:hover::before {
+            left: 150%;
         }
 
         .confirm-button:hover {
-            transform: translateX(-50%) scale(1.05);
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.7), inset 0 0 10px rgba(255, 255, 255, 0.3);
         }
 
+        /* Responsive */
         @media (max-width: 600px) {
             .chrome-button {
                 font-size: 1rem;
                 padding: 12px 24px;
             }
-            
             .confirm-button {
                 font-size: 0.9rem;
                 padding: 12px 24px;
@@ -117,22 +172,20 @@
     <div class="video-container" id="videoContainer">
         <div id="player"></div>
         <a href="https://forms.gle/ABnX2J31q2mAq3C57" class="confirm-button" id="confirmBtn" target="_blank">
-            CONFIRMA AQUÍ TU ASISTENCIA
+            Confirma tu Asistencia
         </a>
     </div>
 
     <!-- Carga del API de YouTube -->
     <script src="https://www.youtube.com/iframe_api"></script>
-    
+
     <script>
-        // Variables globales
         let player;
         let welcomeScreen = document.getElementById('welcomeScreen');
         let videoContainer = document.getElementById('videoContainer');
         let confirmBtn = document.getElementById('confirmBtn');
         let openBtn = document.getElementById('openInvitationBtn');
 
-        // Configuración del video
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
                 videoId: 'lKo5tWdGBgo',
@@ -153,24 +206,19 @@
         }
 
         function onPlayerReady(event) {
-            // Iniciar reproducción
             event.target.playVideo();
         }
 
         function onPlayerStateChange(event) {
-            // Mostrar botón de confirmación cuando el video esté en reproducción
             if (event.data === YT.PlayerState.PLAYING) {
                 confirmBtn.style.display = 'block';
             }
-            
-            // Reiniciar video al finalizar
             if (event.data === YT.PlayerState.ENDED) {
                 player.seekTo(0);
                 player.playVideo();
             }
         }
 
-        // Manejador de clic en el botón de apertura
         openBtn.addEventListener('click', () => {
             welcomeScreen.style.opacity = 0;
             setTimeout(() => {
@@ -179,7 +227,6 @@
             }, 500);
         });
 
-        // Asegurar que el video sea responsivo
         window.addEventListener('resize', () => {
             if (player && player.setSize) {
                 player.setSize(window.innerWidth, window.innerHeight);
