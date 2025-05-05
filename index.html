@@ -5,27 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Invitación</title>
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    /* Estilos inline para botones superpuestos */
-    .asistencia-abajo {
-      position: absolute;
-      bottom: 5px;
-      left: 0;
-      right: 0;
-      width: 100%;
-      text-align: center;
-      z-index: 10;
-    }
-
-    .asistencia-centro {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 11;
-      display: none;
-    }
-  </style>
 </head>
 <body>
 
@@ -34,41 +13,38 @@
     <button id="abrirInvitacion">Abrir Invitación</button>
   </div>
 
-  <!-- Contenedor del video y botones -->
+  <!-- Contenedor del video -->
   <div class="video-wrapper hidden" id="videoWrapper">
-    <div class="video-container" id="videoContainer">
-      <div style="position: relative; z-index: 1;">
-        <div id="player"></div>
-      </div>
+
+    <!-- Video de YouTube -->
+    <div class="video-container">
+      <div id="player"></div>
     </div>
 
-    <!-- Botón visible durante el video -->
-    <div class="asistencia-abajo" id="botonInferior">
+    <!-- Botón rojo centrado durante y después del video -->
+    <div class="boton-centro" id="botonAsistencia">
       <a href="https://forms.gle/NnZfZxmkAJEF8WnB9" class="cta-button" target="_blank">
         Confirma Aquí tu Asistencia
       </a>
     </div>
 
-    <!-- Botón centrado al finalizar el video -->
-    <div class="asistencia-centro" id="botonCentral">
-      <a href="https://forms.gle/NnZfZxmkAJEF8WnB9" class="cta-button" target="_blank">
-        Confirma Aquí tu Asistencia
-      </a>
-    </div>
   </div>
 
-  <!-- Script para YouTube API -->
+  <!-- Script YouTube API -->
   <script>
     let player;
 
     function onYouTubeIframeAPIReady() {
       player = new YT.Player('player', {
+        width: '100%',
+        height: '100%',
         videoId: 'lKo5tWdGBgo',
         playerVars: {
           autoplay: 1,
           controls: 1,
+          modestbranding: 1,
           rel: 0,
-          modestbranding: 1
+          showinfo: 0
         },
         events: {
           onStateChange: onPlayerStateChange
@@ -77,18 +53,16 @@
     }
 
     function onPlayerStateChange(event) {
-      if (event.data === 0) { // Video finalizado
-        document.getElementById('botonInferior').style.display = 'none';
-        document.getElementById('botonCentral').style.display = 'block';
+      if (event.data === 0) {
+        // Al finalizar el video, no hacemos nada porque el botón ya está centrado
+        // Podrías agregar animaciones si lo deseas aquí
       }
     }
 
     document.getElementById('abrirInvitacion').addEventListener('click', () => {
-      // Oculta la pantalla inicial
       document.getElementById('inicioContainer').style.display = 'none';
       document.getElementById('videoWrapper').classList.remove('hidden');
 
-      // Carga la YouTube API
       const tag = document.createElement('script');
       tag.src = "https://www.youtube.com/iframe_api";
       document.body.appendChild(tag);
