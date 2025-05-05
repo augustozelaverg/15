@@ -1,1 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&family=Quicksand:wght@600&display=swap');
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    background-color: #000;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bienvenida {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #000428, #004e92);
+    z-index: 1000;
+    transition: opacity 1.5s ease-in-out;
+}
+
+#botonAbrir {
+    padding: 15px 30px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, rgba(64, 200, 255, 0.8), rgba(32, 160, 255, 0.8));
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 
+                0 0 40px rgba(64, 200, 255, 0.3),
+                inset 0 0 15px rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+    transform: perspective(1000px) translateZ(10px);
+}
+
+#botonAbrir:hover {
+    transform: perspective(1000px) translateZ(20px) scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.7), 
+                0 0 60px rgba(64, 200, 255, 0.5),
+                inset 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+#videoContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+    display: none;
+}
+
+#videoWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#youtubeVideo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+}
+
+#botonConfirmar {
+    position: fixed;
+    bottom: 1%;
+    left: 50%;
+    transform: translateX(-50%) perspective(1000px) translateZ(10px);
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.8), rgba(218, 165, 32, 0.8));
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    z-index: 10;
+    display: none;
+    white-space: nowrap;
+    max-width: 90%;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 
+                0 0 40px rgba(218, 165, 32, 0.3),
+                inset 0 0 15px rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    transform-style: preserve-3d;
+    text-decoration: none;
+}
+
+#botonConfirmar:hover {
+    transform: translateX(-50%) perspective(1000px) translateZ(20px) scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.7), 
+                0 0 60px rgba(218, 165, 32, 0.5),
+                inset 0 0 20px rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 768px) {
+    #botonAbrir {
+        padding: 12px 24px;
+        font-size: 1.4rem;
+    }
+    
+    #botonConfirmar {
+        padding: 8px 16px;
+        font-size: 1rem;
+        bottom: 1%;
+        white-space: nowrap;
+        max-width: 85%;
+    }
+}
+
+@media (max-width: 480px) {
+    #botonAbrir {
+        padding: 10px 20px;
+        font-size: 1.2rem;
+    }
+    
+    #botonConfirmar {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+        max-width: 80%;
+    }
+}
