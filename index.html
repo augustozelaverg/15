@@ -1,73 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Invitación</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Especial</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <!-- Pantalla inicial -->
-  <div class="inicio-container" id="inicioContainer">
-    <button id="abrirInvitacion">Abrir Invitación</button>
-  </div>
-
-  <!-- Contenedor del video -->
-  <div class="video-wrapper hidden" id="videoWrapper">
-
-    <!-- Video de YouTube -->
-    <div class="video-container">
-      <div id="player"></div>
+    <!-- Pantalla de bienvenida -->
+    <div id="welcome-screen">
+        <button class="chrome-button-blue" onclick="openInvitation()">Abrir Invitación</button>
     </div>
 
-    <!-- Botón rojo centrado durante y después del video -->
-    <div class="boton-centro" id="botonAsistencia">
-      <a href="https://forms.gle/NnZfZxmkAJEF8WnB9" class="cta-button" target="_blank">
-        Confirma Aquí tu Asistencia
-      </a>
+    <!-- Contenedor del video -->
+    <div id="video-container">
+        <div id="player"></div>
+        <a id="confirm-button" href="https://forms.gle/ABnX2J31q2mAq3C57" target="_blank">Confirma Aquí tu Asistencia</a>
     </div>
 
-  </div>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        let player;
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const videoContainer = document.getElementById('video-container');
+        const confirmButton = document.getElementById('confirm-button');
 
-  <!-- Script YouTube API -->
-  <script>
-    let player;
-
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('player', {
-        width: '100%',
-        height: '100%',
-        videoId: 'lKo5tWdGBgo',
-        playerVars: {
-          autoplay: 1,
-          controls: 1,
-          modestbranding: 1,
-          rel: 0,
-          showinfo: 0
-        },
-        events: {
-          onStateChange: onPlayerStateChange
+        // Cargar YouTube IFrame API
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '100%',
+                width: '100%',
+                videoId: 'lKo5tWdGBgo',
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 1,
+                    'mute': 0,
+                    'rel': 0,
+                    'fs': 1,
+                    'modestbranding': 1,
+                    'loop': 1,
+                    'playlist': 'lKo5tWdGBgo' // Necesario para el bucle
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
         }
-      });
-    }
 
-    function onPlayerStateChange(event) {
-      if (event.data === 0) {
-        // Al finalizar el video, no hacemos nada porque el botón ya está centrado
-        // Podrías agregar animaciones si lo deseas aquí
-      }
-    }
+        // Cuando el reproductor está listo
+        function onPlayerReady(event) {
+            // Listo para reproducir cuando se haga clic
+        }
 
-    document.getElementById('abrirInvitacion').addEventListener('click', () => {
-      document.getElementById('inicioContainer').style.display = 'none';
-      document.getElementById('videoWrapper').classList.remove('hidden');
+        // Manejar cambios de estado del video
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                confirmButton.classList.add('centered');
+                player.playVideo(); // Reinicia el video para el bucle
+            }
+        }
 
-      const tag = document.createElement('script');
-      tag.src = "https://www.youtube.com/iframe_api";
-      document.body.appendChild(tag);
-    });
-  </script>
-
+        // Función para abrir la invitación
+        function openInvitation() {
+            welcomeScreen.classList.add('hidden');
+            videoContainer.style.display = 'block';
+            player.playVideo();
+        }
+    </script>
 </body>
 </html>
